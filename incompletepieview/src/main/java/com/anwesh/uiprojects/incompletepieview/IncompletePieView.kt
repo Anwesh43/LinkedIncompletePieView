@@ -4,6 +4,7 @@ package com.anwesh.uiprojects.incompletepieview
  * Created by anweshmishra on 20/09/18.
  */
 
+import android.app.Activity
 import android.view.View
 import android.view.MotionEvent
 import android.content.Context
@@ -182,6 +183,14 @@ class IncompletePieView(ctx : Context) : View(ctx) {
             ip.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) : IncompletePieView {
+            val view : IncompletePieView = IncompletePieView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
