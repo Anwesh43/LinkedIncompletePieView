@@ -19,6 +19,8 @@ fun Canvas.drawIPNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
     val gap : Float = w / (nodes + 1)
+    val degGap = 360f / nodes
+    val remDeg = 360f - degGap
     val size : Float = gap / 3
     paint.color = Color.parseColor("#4527A0")
     paint.strokeWidth = Math.min(w, h) / 60
@@ -28,7 +30,7 @@ fun Canvas.drawIPNode(i : Int, scale : Float, paint : Paint) {
     val sc2 : Float = Math.min(0.5f, Math.max(scale - 0.5f, 0f)) * 2
     save()
     translate(gap + i * gap, h/2 + (h/2 - size) * sc2)
-    drawArc(RectF(-size, -size, size, size), i * gap, 60f + 300f * sc1, false, paint)
+    drawArc(RectF(-size, -size, size, size), i * degGap, degGap + remDeg * sc1, false, paint)
     restore()
 }
 
