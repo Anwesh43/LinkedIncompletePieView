@@ -161,4 +161,25 @@ class IncompletePieView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class Renderer(var view : IncompletePieView) {
+        private val animator : Animator = Animator(view)
+        private val ip : LinkedIP = LinkedIP(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#BDBDBD"))
+            ip.draw(canvas, paint)
+            animator.animate {
+                ip.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ip.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
